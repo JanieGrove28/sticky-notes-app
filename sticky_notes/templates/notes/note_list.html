@@ -1,0 +1,33 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Sticky Notes</h1>
+
+    <div class="top-bar">
+        <a class="btn" href="{% url 'note_create' %}">+ Create Note</a>
+    </div>
+
+    <div class="grid">
+
+        {% for note in notes %}
+        <div class="card">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+
+            <div class="actions">
+                <a href="{% url 'note_update' note.id %}">Edit</a>
+                <a href="{% url 'note_delete' note.id %}">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="empty">No notes yet — create one ✨</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
